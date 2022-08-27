@@ -3,11 +3,15 @@ package com.jpmc.theater;
 import java.time.LocalDateTime;
 
 public class Showing {
-    private Movie movie;
-    private int sequenceOfTheDay;
-    private LocalDateTime showStartTime;
+    private final Movie movie;
+    private final int sequenceOfTheDay;
+    private final LocalDateTime showStartTime;
 
-    public Showing(Movie movie, int sequenceOfTheDay, LocalDateTime showStartTime) {
+    public Showing(final Movie movie, final int sequenceOfTheDay, final LocalDateTime showStartTime) {
+        if (movie == null || showStartTime == null) {
+            throw new IllegalArgumentException("Movie or showStartTime cannot be null.");
+        }
+
         this.movie = movie;
         this.sequenceOfTheDay = sequenceOfTheDay;
         this.showStartTime = showStartTime;
@@ -21,7 +25,7 @@ public class Showing {
         return showStartTime;
     }
 
-    public boolean isSequence(int sequence) {
+    public boolean isSequence(final int sequence) {
         return this.sequenceOfTheDay == sequence;
     }
 
@@ -33,7 +37,7 @@ public class Showing {
         return sequenceOfTheDay;
     }
 
-    private double calculateFee(int audienceCount) {
+    public double calculateFee(final int audienceCount) {
         return movie.calculateTicketPrice(this) * audienceCount;
     }
 }

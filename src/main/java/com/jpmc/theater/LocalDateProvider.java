@@ -12,10 +12,10 @@ public class LocalDateProvider {
         if (instance == null) {
             instance = new LocalDateProvider();
         }
-            return instance;
-        }
+        return instance;
+    }
 
     public LocalDate currentDate() {
-            return LocalDate.now();
+        return LocalDate.now();
     }
 }
